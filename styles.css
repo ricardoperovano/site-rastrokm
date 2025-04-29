@@ -82,9 +82,11 @@ body {
     display: none;
     background: none;
     border: none;
-    font-size: 1.5rem;
+    font-size: 1.8rem;
     cursor: pointer;
     color: white;
+    padding: 0.5rem;
+    z-index: 1100;
 }
 
 /* Hero Section */
@@ -643,6 +645,56 @@ body {
 
     .contact-container {
         grid-template-columns: 1fr;
+    }
+
+    .mobile-menu-button {
+        display: block;
+    }
+
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: -100%;
+        height: 100vh;
+        width: 80%;
+        max-width: 400px;
+        background-color: #064e3b;
+        padding: 6rem 2rem;
+        flex-direction: column;
+        justify-content: flex-start;
+        transition: right 0.3s ease-in-out;
+        z-index: 1050;
+    }
+
+    .nav-links.active {
+        right: 0;
+    }
+
+    .nav-links a {
+        font-size: 1.2rem;
+        padding: 1rem;
+        width: 100%;
+        text-align: center;
+    }
+
+    .nav-links .cta-button {
+        width: 100%;
+        margin-top: 1rem;
+    }
+
+    .mobile-menu-overlay {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5);
+        z-index: 1040;
+    }
+
+    .mobile-menu-overlay.active {
+        display: block;
     }
 }
 

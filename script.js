@@ -1,18 +1,33 @@
 // Menu Mobile
 const mobileMenuButton = document.querySelector('.mobile-menu-button');
 const navLinks = document.querySelector('.nav-links');
+const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
 
-mobileMenuButton.addEventListener('click', () => {
-    navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-});
+function toggleMobileMenu() {
+    navLinks.classList.toggle('active');
+    mobileMenuOverlay.classList.toggle('active');
+    document.body.style.overflow = navLinks.classList.contains('active') ? 'hidden' : '';
+}
+
+function closeMobileMenu() {
+    navLinks.classList.remove('active');
+    mobileMenuOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+}
+
+mobileMenuButton.addEventListener('click', toggleMobileMenu);
+mobileMenuOverlay.addEventListener('click', closeMobileMenu);
 
 // Fechar menu ao clicar em um link
 document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', () => {
-        if (window.innerWidth <= 768) {
-            navLinks.style.display = 'none';
-        }
-    });
+    link.addEventListener('click', closeMobileMenu);
+});
+
+// Fechar menu ao pressionar ESC
+document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+        closeMobileMenu();
+    }
 });
 
 // Animação de scroll suave
