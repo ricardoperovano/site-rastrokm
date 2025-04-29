@@ -15,13 +15,28 @@ function closeMobileMenu() {
     document.body.style.overflow = '';
 }
 
-mobileMenuButton.addEventListener('click', toggleMobileMenu);
-mobileMenuOverlay.addEventListener('click', closeMobileMenu);
+// Abrir/fechar menu ao clicar no botão
+mobileMenuButton.addEventListener('click', (e) => {
+    e.stopPropagation(); // Previne que o click se propague para o document
+    toggleMobileMenu();
+});
+
+// Fechar menu ao clicar em qualquer lugar do documento
+document.addEventListener('click', (e) => {
+    if (navLinks.classList.contains('active') && !navLinks.contains(e.target)) {
+        closeMobileMenu();
+    }
+});
+
+// Previne que cliques dentro do menu fechem ele
+navLinks.addEventListener('click', (e) => {
+    e.stopPropagation();
+});
 
 // Fechar menu ao clicar em um link
 document.querySelectorAll('.nav-links a').forEach(link => {
     link.addEventListener('click', () => {
-        navLinks.classList.remove('active');
+        closeMobileMenu();
     });
 });
 
