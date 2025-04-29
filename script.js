@@ -20,7 +20,9 @@ mobileMenuOverlay.addEventListener('click', closeMobileMenu);
 
 // Fechar menu ao clicar em um link
 document.querySelectorAll('.nav-links a').forEach(link => {
-    link.addEventListener('click', closeMobileMenu);
+    link.addEventListener('click', () => {
+        navLinks.classList.remove('active');
+    });
 });
 
 // Fechar menu ao pressionar ESC
